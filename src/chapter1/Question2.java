@@ -1,5 +1,10 @@
 package chapter1;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 /**
  *  Implement a function void reverse(char * str) in C or C++ reverse a null terminated string
  */
@@ -23,5 +28,12 @@ public class Question2 {
         return new String(chars);
     }
 
+    @Test
+    public void testReverse()
+    {
+        assertNull(reverse(null));
+        assertEquals(reverse("abcd") , "dcba" );
+        assertEquals(reverse("abc") , "cba" );
+    }
 
 }

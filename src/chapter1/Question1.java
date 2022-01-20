@@ -1,7 +1,12 @@
 package chapter1;
 
 
+import org.junit.Test;
+
 import java.util.HashSet;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
     Implement an algorithm to determine if a string has all unique characters.
@@ -55,4 +60,23 @@ public class Question1 {
         return true ;
 
     }
+
+    @Test
+    public void testByUsingSet()
+    {
+        assertTrue(containsUniqueCharsOnlyByUsingSet(null));
+        assertTrue(containsUniqueCharsOnlyByUsingSet("abc"));
+        assertFalse(containsUniqueCharsOnlyByUsingSet("abad"));
+
+    }
+
+    @Test
+    public void testUnique()
+    {
+        assertTrue(containsUniqueCharsOnly(null));
+        assertTrue(containsUniqueCharsOnly("abc"));
+        assertFalse(containsUniqueCharsOnly("abad"));
+
+    }
+
 }

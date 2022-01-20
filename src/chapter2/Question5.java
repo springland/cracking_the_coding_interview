@@ -18,4 +18,55 @@ package chapter2;
  */
 public class Question5 {
 
+    //( 7->1->6) + (5->9->2) . This is 617 + 295
+    public Node addReverseSequqnce(Node head1 , Node head2)
+    {
+        Node dummyHead = new Node(-1);
+        Node tail = dummyHead ;
+
+        int carry = 0;
+        int value = 0;
+        while(head1 != null && head2 != null)
+        {
+            value = head1.data + head2.data + carry;
+            carry = value /10;
+            value = value % 10;
+            Node node = new Node(value);
+            tail.next = node ;
+            tail = node ;
+            head1 = head1.next;
+            head2 = head2.next ;
+        }
+
+        while(head1 != null)
+        {
+            value = head1.data + carry;
+            carry = value /10;
+            value = value %10;
+            Node node = new Node(value);
+            tail.next = node ;
+            tail = node ;
+            head1 = head1.next ;
+        }
+
+        while(head2 != null)
+        {
+            value = head2.data + carry;
+            carry = value /10;
+            value = value %10;
+            Node node = new Node(value);
+            tail.next = node ;
+            tail = node ;
+            head2 = head2.next ;
+        }
+
+        return dummyHead.next ;
+    }
+
+    public Node add(Node head1 , Node head2)
+    {
+
+        return null;
+    }
+
 }

@@ -48,6 +48,10 @@ public class Stack {
         return size ;
     }
 
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
     public Node peek()
     {
         return top;

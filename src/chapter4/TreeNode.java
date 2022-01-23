@@ -7,4 +7,14 @@ public class TreeNode {
 
     public TreeNode parent ;
     public int value ;
+
+    public TreeNode()
+    {
+
+    }
+
+    public TreeNode(int value)
+    {
+        this.value = value ;
+    }
 }

@@ -19,21 +19,11 @@ public class Question7 {
 
     class Animal{
         int id ;
-        int index ;
         Animal(int id)
         {
             this.id = id ;
         }
 
-        public void setIndex(int index)
-        {
-            this.index = index ;
-        }
-
-        public int getIndex()
-        {
-            return this.index ;
-        }
 
     }
     class Dog extends Animal {
@@ -50,31 +40,41 @@ public class Question7 {
         }
     }
 
-    LinkedList<Dog> dogs = new LinkedList<>();
-    LinkedList<Cat> cats = new LinkedList<>();
+    class Slot {
+        Animal  animal ;
+        int index ;
+
+        public Slot(Animal animal , int index)
+        {
+            this.animal = animal ;
+            this.index = index ;
+        }
+    }
+    LinkedList<Slot> dogs = new LinkedList<>();
+    LinkedList<Slot> cats = new LinkedList<>();
     public void enqueue(Animal animal)
     {
         int lastIndex = 0;
         if(!cats.isEmpty())
         {
-            lastIndex = cats.getLast().getIndex()+1 ;
+            lastIndex = cats.getLast().index+1 ;
         }
         if(!dogs.isEmpty())
         {
-            if(dogs.getLast().getIndex() >= lastIndex)
+            if(dogs.getLast().index >= lastIndex)
             {
-                lastIndex = dogs.getLast().getIndex() +1 ;
+                lastIndex = dogs.getLast().index +1 ;
             }
         }
 
-        animal.setIndex(lastIndex);
+        Slot slot = new Slot(animal , lastIndex);
         if(animal instanceof Cat)
         {
-            cats.add((Cat)animal);
+            cats.add(slot);
         }
         if(animal instanceof Dog)
         {
-            dogs.add((Dog)animal);
+            dogs.add(slot);
         }
 
     }
@@ -83,24 +83,24 @@ public class Question7 {
     {
         if(!cats.isEmpty() && !dogs.isEmpty())
         {
-            if(cats.getFirst().getIndex() < dogs.getFirst().getIndex())
+            if(cats.getFirst().index < dogs.getFirst().index)
             {
-                return cats.removeFirst();
+                return cats.removeFirst().animal;
             }
             else
             {
-                return dogs.removeFirst();
+                return dogs.removeFirst().animal;
             }
         }
 
         if(!cats.isEmpty())
         {
-            return cats.removeFirst();
+            return cats.removeFirst().animal;
         }
 
         if(!dogs.isEmpty())
         {
-            return dogs.removeFirst();
+            return dogs.removeFirst().animal;
         }
 
         return null;
@@ -108,12 +108,12 @@ public class Question7 {
 
     public Dog dequeueDog()
     {
-        return dogs.removeFirst();
+        return (Dog)dogs.removeFirst().animal;
     }
 
     public Cat dequeueCat()
     {
-        return  cats.removeFirst();
+        return  (Cat)cats.removeFirst().animal;
     }
 
     @Test
